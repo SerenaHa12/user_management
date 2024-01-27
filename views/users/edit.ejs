@@ -1,0 +1,57 @@
+<div class="w-50">
+  <form method="post">
+    <h3>Edit User</h3>
+    <!-- name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        placeholder="Enter name .."
+        name="name"
+        value="<%= user.name %>"
+      />
+    </div>
+
+    <!-- email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email .."
+        name="email"
+        required
+        value="<%= user.email %>"
+      />
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+
+    <!-- status -->
+    <div class="mb-3">
+      <label for="">Trạng thái</label>
+      <select name="status" class="form-select">
+        <option value="0" <%= !user.status ? 'selected': '' %> >Chưa kích hoạt</option>
+        <option value="1" <%= user.status ? 'selected': '' %> >Kích hoạt</option>
+    </select>
+    </div>
+
+    <!-- check me out -->
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
+    <!-- submit -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/users" class="text-white text-decoration-none btn btn-danger"
+      >Return</a
+    >
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<h3>Manage Links</h3>
+<p>Free tool</p>
+
+<div class="my-3">
+  <a href="/links/add" class="text-white text-decoration-none btn btn-primary"
+    >Create link</a
+  >
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Short Link</th>
+      <th scope="col">Original Link</th>
+      <th scope="col">Password</th>
+      <th scope="col">Visits</th>
+      <th scope="col">Time</th>
+      <th width="7%">Edit</th>
+      <th width="7%">Share</th>
+      <th width="7%">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% links.forEach((link, index) => { %>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><a href="<%= link.short %>"><%= link.short %></a></td>
+      <td><a href="<%= link.full %>"><%= link.full %></a></td>
+      <td>
+        <a href="/links/edit/" class="btn btn-success"
+          ><i class="fa-solid fa-eye" style="color: #ffffff"></i
+        ></a>
+      </td>
+      <td><%= link.click %></td>
+      <td><%= moment(link.created_at).format('DD/MM/YYYY HH:mm:ss') %></td>
+      <td>
+        <div>
+          <a href="/links/edit/" class="btn btn-warning"
+            ><i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i
+          ></a>
+        </div>
+      </td>
+      <td>
+        <div>
+          <a href="/links/edit/" class="btn btn-info"
+            ><i class="fa-solid fa-share" style="color: #ffffff"></i
+          ></a>
+        </div>
+      </td>
+      <td>
+        <div>
+          <form
+            action="/links/delete/"
+            onsubmit="return confirm('Bạn có chắc?')"
+            method="post"
+          >
+            <button class="btn btn-danger">
+              <i class="fa-solid fa-trash" style="color: #ffffff"></i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

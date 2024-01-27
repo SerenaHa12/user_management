@@ -1,0 +1,52 @@
+<div class="w-50">
+  <form method="post">
+    <h3>Add Link</h3>
+    <!-- name -->
+    <div class="mb-3">
+      <label for="full" class="form-label">URL</label>
+      <input
+        type="text"
+        class="form-control"
+        required
+        placeholder="Enter URL .."
+        name="full"
+      />
+    </div>
+
+    <!-- pass -->
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Enter password .."
+        name="password"
+        required
+      />
+    </div>
+
+    <!-- back-haft -->
+    <div class="mb-3">
+      <label for="short" class="form-label">Back-half</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter a back-half .."
+        name="short"
+      />
+    </div>
+
+    <!-- check me out -->
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
+    <!-- submit -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/links" class="text-white text-decoration-none btn btn-danger"
+      >Return</a
+    >
+  </form>
+</div>

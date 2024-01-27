@@ -1,0 +1,86 @@
+<h3 class="mb-4">Manage User</h3>
+<!-- form ui -->
+<form action="">
+  <div class="row">
+    <div class="col-3">
+      <select name="status" class="form-select">
+        <option value="all">Tất cả</option>
+        <option value="active" <%= req.query.status === 'active' ? 'selected': '' %>>Kích hoạt</option>
+        <option value="inactive" <%= req.query.status === 'inactive' ? 'selected': '' %>>Chưa kích hoạt</option>
+      </select>
+    </div>
+    <div class="col-6">
+      <input
+        type="search"
+        name="keyword"
+        placeholder="Từ khóa ..."
+        class="form-control"
+        value="<%= req.query.keyword %>"
+      />
+    </div>
+    <div class="col-1">
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff"></i>
+      </button>
+    </div>
+    <div class="col-1">
+      <a
+        href="/users/add"
+        class="text-white text-decoration-none btn btn-primary"
+        ><i class="fa-solid fa-user-plus" style="color: #ffffff"></i
+      ></a>
+    </div>
+  </div>
+</form>
+
+<!-- table ui -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Time</th>
+      <th scope="col">Status</th>
+      <th width="7%">Role</th>
+      <th width="7%">Edit</th>
+      <th width="7%">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach((user, index) => { %>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= moment(user.created_at).format('DD/MM/YYYY HH:mm:ss') %></td>
+      <td><%= user.status %></td>
+      <td width="5%">
+        <a href="" class="btn btn-success"
+          ><i class="fa-solid fa-user" style="color: #ffffff"></i
+        ></a>
+      </td>
+      <td>
+        <div>
+          <a href="/users/edit/<%= user.id %>" class="btn btn-warning"
+            ><i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i
+          ></a>
+        </div>
+      </td>
+      <td>
+        <div>
+          <form
+            action="/users/delete/<%= user.id %>"
+            onsubmit="return confirm('Bạn có chắc?')"
+            method="post"
+          >
+            <button class="btn btn-danger">
+              <i class="fa-solid fa-trash" style="color: #ffffff"></i>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
