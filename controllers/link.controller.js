@@ -14,6 +14,7 @@ module.exports = {
       limit,
       offset,
     });
+    console.log(links);
     const totalPage = Math.ceil(count / limit);
     res.render("links/index", { links, moment, totalPage, page, req });
   },
@@ -48,11 +49,10 @@ module.exports = {
     const { short } = req.params;
     try {
       const link = await Link.findOne({ where: { short } });
-      console.log(link);
       if (!link) {
         return res.status(404).json({ message: "Link not found" });
       }
-      link.clicks++;
+      link.click++;
       await link.save();
       res.redirect(link.full);
     } catch (err) {

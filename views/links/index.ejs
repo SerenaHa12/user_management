@@ -11,8 +11,8 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Short Link</th>
-      <th scope="col">Original Link</th>
+      <th scope="col">Back-half</th>
+      <th scope="col">Full URL</th>
       <th scope="col">Password</th>
       <th scope="col">Visits</th>
       <th scope="col">Time</th>
@@ -25,7 +25,7 @@
     <% links.forEach((link, index) => { %>
     <tr>
       <th scope="row"><%= index+1 %></th>
-      <td><a href="<%= link.short %>"><%= link.short %></a></td>
+      <td><a href="/links/<%= link.short %>"><%= link.short %></a></td>
       <td><a href="<%= link.full %>"><%= link.full %></a></td>
       <td>
         <a href="/links/edit/" class="btn btn-success"
@@ -65,3 +65,19 @@
     <% }) %>
   </tbody>
 </table>
+
+<ul class="pagination">
+  <% if (page > 1) { %>
+  <li class="page-item">
+    <a class="page-link" href="?page=<%= +page-1 %>">Trước</a>
+  </li>
+  <% } %> <% for( let index = 1; index <= totalPage; index++ ) { %>
+  <li class="page-item <%= page == index ? 'active': '' %>">
+    <a class="page-link" href="?page=<%= index %>"><%= index %></a>
+  </li>
+  <% } %> <% if (page < totalPage) { %>
+  <li class="page-item">
+    <a class="page-link" href="?page=<%= +page+1 %>">Sau</a>
+  </li>
+  <% } %>
+</ul>
